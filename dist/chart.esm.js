@@ -19684,7 +19684,7 @@ function (_ChartComponent) {
       strokeWidth: '2px',
       fill: 'steelblue',
       onClick: function onClick(d) {
-        console.log(d.properties.NAME, d.currentUnemployment);
+        console.log(d);
       }
     });
 
@@ -19723,7 +19723,7 @@ function (_ChartComponent) {
       g.appendSelect('g').attr('id', 'states').selectAll('path').data(features.features).enter().append('path').attr('d', path).style('fill', function (d) {
         return color(d.currentUnemployment);
       }).on('click', function (d) {
-        props.onClick(d);
+        props.onClick(d.properties.NAME);
       });
       return this;
     }

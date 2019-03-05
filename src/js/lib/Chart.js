@@ -10,7 +10,7 @@ class ModuleNicar2019Map extends ChartComponent {
     stroke: '#ccc',
     strokeWidth: '2px',
     fill: 'steelblue',
-    onClick: (d) => { console.log(d.properties.NAME, d.currentUnemployment); },
+    onClick: (d) => { console.log(d); },
   }
 
   usmap = usmap;
@@ -54,7 +54,7 @@ class ModuleNicar2019Map extends ChartComponent {
       .attr('d', path)
       .style('fill', d => color(d.currentUnemployment))
       .on('click', (d) => {
-        props.onClick(d);
+        props.onClick(d.properties.NAME);
       });
 
     return this;
