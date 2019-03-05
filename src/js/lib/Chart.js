@@ -7,7 +7,7 @@ import unemployment from './data/data.json';
 
 class ModuleNicar2019Map extends ChartComponent {
   defaultProps = {
-    highlightState: 'Illinois',
+    highlightState: 'Missouri',
     onClick: (d) => { console.log(d); },
   }
 
@@ -44,21 +44,24 @@ class ModuleNicar2019Map extends ChartComponent {
     const path = d3.geoPath()
       .projection(projection);
 
-    g.appendSelect('g')
+    const paths = g.appendSelect('g')
       .attr('id', 'states')
       .selectAll('path')
-      .data(features.features)
+      .data(features.features);
+
+    paths
       .enter().append('path')
       .attr('d', path)
+      .on('click', (d) => {
+        props.onClick(d.properties.NAME);
+      })
+      .merge(paths)
       .style('fill', d => {
         if (props.highlightState === null) {
           return color(d.currentUnemployment);
         } else {
           return d.properties.NAME === props.highlightState ? color(d.currentUnemployment) : '#E5E7EB';
         }
-      })
-      .on('click', (d) => {
-        props.onClick(d.properties.NAME);
       });
 
     return this;

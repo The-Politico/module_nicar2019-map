@@ -10,14 +10,16 @@ const { brand } = Colors;
 class ChartContainer extends React.Component {
   chartContainer = React.createRef()
   chart = new Chart()
-  state = { 'name': 'IL', 'unemployment': 0.15 };
+  state = {
+    selectedState: null,
+  };
 
   componentDidMount() {
     this.chart
       .selection(this.chartContainer.current)
       .props({
-        fill: brand.politicoBlue.hex,
-        sendMessage: this.sendMessage,
+        highlightState: this.state.selectedState,
+        onClick: (selectedState) => this.setState({ selectedState }),
       })
       .draw();
 
@@ -27,7 +29,11 @@ class ChartContainer extends React.Component {
 
   componentDidUpdate() {
     // Update the chart with the component
-    this.chart.draw();
+    this.chart
+      .props({
+        highlightState: this.state.selectedState,
+      })
+      .draw();
   }
 
   componentWillUnmount() {

@@ -19680,7 +19680,7 @@ function (_ChartComponent) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ModuleNicar2019Map)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "defaultProps", {
-      highlightState: 'Illinois',
+      highlightState: 'Missouri',
       onClick: function onClick(d) {
         console.log(d);
       }
@@ -19718,14 +19718,15 @@ function (_ChartComponent) {
 
       var projection = d3.geoAlbersUsa().fitSize([width, height], features);
       var path = d3.geoPath().projection(projection);
-      g.appendSelect('g').attr('id', 'states').selectAll('path').data(features.features).enter().append('path').attr('d', path).style('fill', function (d) {
+      var paths = g.appendSelect('g').attr('id', 'states').selectAll('path').data(features.features);
+      paths.enter().append('path').attr('d', path).on('click', function (d) {
+        props.onClick(d.properties.NAME);
+      }).merge(paths).style('fill', function (d) {
         if (props.highlightState === null) {
           return color(d.currentUnemployment);
         } else {
           return d.properties.NAME === props.highlightState ? color(d.currentUnemployment) : '#E5E7EB';
         }
-      }).on('click', function (d) {
-        props.onClick(d.properties.NAME);
       });
       return this;
     }
