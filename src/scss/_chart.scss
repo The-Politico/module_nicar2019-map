@@ -5,9 +5,10 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
+    stroke: white;
+    stroke-width: .5px;
     &:hover {
       stroke: black;
-      stroke-dasharray: 3 3;
       stroke-width: 1px;
       z-index: 999;
     }

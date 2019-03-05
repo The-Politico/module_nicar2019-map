@@ -7,9 +7,7 @@ import unemployment from './data/data.json';
 
 class ModuleNicar2019Map extends ChartComponent {
   defaultProps = {
-    stroke: '#ccc',
-    strokeWidth: '2px',
-    fill: 'steelblue',
+    highlightState: 'Illinois',
     onClick: (d) => { console.log(d); },
   }
 
@@ -52,7 +50,13 @@ class ModuleNicar2019Map extends ChartComponent {
       .data(features.features)
       .enter().append('path')
       .attr('d', path)
-      .style('fill', d => color(d.currentUnemployment))
+      .style('fill', d => {
+        if (props.highlightState === null) {
+          return color(d.currentUnemployment);
+        } else {
+          return d.properties.NAME === props.highlightState ? color(d.currentUnemployment) : '#E5E7EB';
+        }
+      })
       .on('click', (d) => {
         props.onClick(d.properties.NAME);
       });
