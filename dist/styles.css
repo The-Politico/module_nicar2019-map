@@ -1,0 +1,19 @@
+#ModuleNicar2019Map-container {
+  /*Your chart styles here*/
+}
+#ModuleNicar2019Map-container svg path {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+#ModuleNicar2019Map-container svg path:hover {
+  stroke: black;
+  stroke-dasharray: 3 3;
+  stroke-width: 1px;
+  z-index: 999;
+}
+#ModuleNicar2019Map-container svg path .active {
+  stroke: black;
+  stroke-width: 2px;
+  z-index: 999;
+}
