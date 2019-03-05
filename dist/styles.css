@@ -12,6 +12,9 @@
   stroke-width: 1px;
   z-index: 999;
 }
+#ModuleNicar2019Map-container svg path .nonactive {
+  fill: #E5E7EB;
+}
 #ModuleNicar2019Map-container svg path .active {
   stroke: black;
   stroke-width: 2px;
